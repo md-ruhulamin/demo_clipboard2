@@ -1,5 +1,8 @@
 import 'dart:io';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:demo_clipboard/home.dart';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
@@ -16,15 +19,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const Mp3InboxApp(),
+      home:  AudioNotesPage(),
     );
   }
 }
-
 class Mp3InboxApp extends StatefulWidget {
   const Mp3InboxApp({super.key});
 
