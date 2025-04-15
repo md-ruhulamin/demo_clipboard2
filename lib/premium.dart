@@ -1,61 +1,52 @@
+import 'package:clipboard/theme_controller.dart';
 import 'package:flutter/material.dart';
-
-
-
+import 'package:get/get.dart';
 
 class PremiumUpgradeScreen extends StatelessWidget {
+   final ThemeController themeController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     backgroundColor: const Color.fromRGBO(255, 255, 255, 1), // light blue background
-     appBar:
-      AppBar(
-            backgroundColor: Colors.white,
-            elevation: 0,
-            leading: IconButton(
-              icon: Icon(Icons.arrow_back_ios, color: Colors.black),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-            title: Text(
-              'Upgrade Premium',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          )
-     ,      body: SafeArea(
+      //  backgroundColor: const Color.fromRGBO(255, 255, 255, 1), // light blue background
+      appBar: AppBar(
+    //    backgroundColor: Colors.white,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios, color: Colors.black),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        title: Text(
+          'Upgrade Premium',
+          style: TextStyle(
+           
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+      body: SafeArea(
         child: Center(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Column(
               children: [
-              Image.asset(
-                  'assests/audio.jpg',
-                  height: 160,
-                ),
-              
-             
+               themeController.isDarkMode?Image.asset('assets/black_image.png'): Image.asset('assets/audio.jpg', height: 160),
+
                 FeatureRow(icon: Icons.text_fields, text: 'Unlimited Access'),
                 FeatureRow(icon: Icons.download, text: 'Offline Mode'),
-    
+
                 FeatureRow(icon: Icons.block, text: 'No Ads'),
                 FeatureRow(icon: Icons.all_inclusive, text: 'No Limits'),
                 SizedBox(height: 10),
                 Text(
                   'SELECT PLAN',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
                 ),
                 SizedBox(height: 5),
                 PlanSelector(),
                 Spacer(),
-              
               ],
             ),
           ),
@@ -106,7 +97,11 @@ class PlanCard extends StatelessWidget {
   final String price;
   final bool highlighted;
 
-  const PlanCard({required this.title, required this.price, this.highlighted = false});
+  const PlanCard({
+    required this.title,
+    required this.price,
+    this.highlighted = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -114,9 +109,9 @@ class PlanCard extends StatelessWidget {
       width: 100,
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: highlighted ? Colors.orange.shade100 : Colors.white,
+        //  color: highlighted ? Colors.orange.shade100 : Colors.white,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.black12),
+        border: Border.all(color: Colors.grey.shade900),
       ),
       child: Column(
         children: [
@@ -133,7 +128,10 @@ class PlanCard extends StatelessWidget {
               ),
             ),
           SizedBox(height: 8),
-          Text(title, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+          Text(
+            title,
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          ),
           SizedBox(height: 4),
           Text(price, style: TextStyle(fontSize: 14)),
           SizedBox(height: 8),
@@ -144,7 +142,7 @@ class PlanCard extends StatelessWidget {
               minimumSize: Size(double.infinity, 32),
               padding: EdgeInsets.zero,
             ),
-          )
+          ),
         ],
       ),
     );
