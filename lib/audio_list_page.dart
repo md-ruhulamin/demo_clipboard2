@@ -3,8 +3,9 @@ import 'dart:async';
 import 'dart:io';
 import 'package:clipboard/audio_controller.dart';
 import 'package:clipboard/mini_player.dart';
-import 'package:clipboard/premium.dart';
+
 import 'package:clipboard/print_helper.dart';
+import 'package:clipboard/settings.dart';
 import 'package:clipboard/theme_controller.dart';
 import 'package:file_picker/file_picker.dart'
     show FilePicker, FilePickerResult, FileType;
@@ -40,7 +41,7 @@ class _AudioListPageState extends State<AudioListPage>
   Duration? _position;
 
   final TextEditingController _controller = TextEditingController();
-  final ThemeController themeController = Get.find();
+  late ThemeController themeController ;
   bool isPlaying = false;
 
   List<FileSystemEntity> _mp3Files = [];
@@ -57,6 +58,7 @@ class _AudioListPageState extends State<AudioListPage>
   void initState() {
     super.initState();
     audioController = Get.put(AudioController());
+    themeController=Get.put(ThemeController());
     _initFolder();
     loadPlaylist();
   }
@@ -280,17 +282,9 @@ class _AudioListPageState extends State<AudioListPage>
     return GestureDetector(
       onTap: _clearSelection,
       child: Scaffold(
+      
         appBar: AppBar(
-          //          backgroundColor: Colors.white,
-          actions: [
-            Obx(
-              () => Switch(
-                value: themeController.isDarkMode,
-                onChanged: themeController.toggleTheme,
-              ),
-            ),
-          ],
-          //   preferredSize: Size.fromHeight(60),
+        
           title: SafeArea(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
@@ -331,7 +325,7 @@ class _AudioListPageState extends State<AudioListPage>
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => PremiumUpgradeScreen(),
+                          builder: (context) => SettingsPage(),
                         ),
                       );
                     },

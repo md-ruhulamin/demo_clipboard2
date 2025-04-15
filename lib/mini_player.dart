@@ -1,10 +1,8 @@
 import 'package:clipboard/audio_controller.dart';
-import 'package:clipboard/file_player.dart';
 import 'package:clipboard/position_data.dart';
 import 'package:clipboard/theme_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:get/get_state_manager/src/simple/get_state.dart';
 
 import 'package:get/instance_manager.dart';
 import 'package:get/route_manager.dart';
@@ -53,7 +51,7 @@ class _MiniPlayerState extends State<MiniPlayer> {
         height: 140,
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
-         color:themeController.isDarkMode? Colors.black:Colors.white,
+        color:themeController.isDarkMode? Colors.black:Colors.white,
           boxShadow: [BoxShadow(blurRadius: 6, color: Colors.black12)
           
           ],
@@ -96,7 +94,7 @@ class _MiniPlayerState extends State<MiniPlayer> {
                                     .sequenceState
                                     ?.currentSource
                                     ?.tag
-                                    .title,
+                                    .title,maxLines: 1,
                                 style: const TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
